@@ -1,64 +1,86 @@
 <template>
   <section>
-      <div class="container">
-          <HcodeSectionNewsIndividual 
-          img-name="news1.jpg"
-          img-info="Noticia 1"
-          news-title="Começa os treinos para a nova temporada"
-          news-content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus deserunt
-          quibusdam iusto, dignissimos dolore officiis libero voluptates eum non
-          velit veritatis maiores fugit nobis, magnam molestias in quod labore
-          alias? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
-          aperiam soluta expedita molestiae neque doloribus ad deleniti libero
-          cupiditate, iusto dolore. Expedita ad blanditiis officiis culpa
-          quibusdam laudantium facere fuga?"
-          news-date="01/01/2021"
-          />
-          <HcodeSectionNewsIndividual 
-          img-name="news2.jpg"
-          img-info="Noticia 2"
-          news-title="jogo de quarta-feira termina empatado"
-          news-content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus deserunt
-          quibusdam iusto, dignissimos dolore officiis libero voluptates eum non
-          velit veritatis maiores fugit nobis, magnam molestias in quod labore
-          alias? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
-          aperiam soluta expedita molestiae neque doloribus ad deleniti libero
-          cupiditate, iusto dolore. Expedita ad blanditiis officiis culpa
-          quibusdam laudantium facere fuga?"
-          news-date="07/01/2021"
-          />
-          <HcodeSectionNewsIndividual 
-          img-name="news3.jpg"
-          img-info="Noticia 3"
-          news-title="A inauguração do novo estadio sera na semana que vem"
-          news-content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus deserunt
-          quibusdam iusto, dignissimos dolore officiis libero voluptates eum non
-          velit veritatis maiores fugit nobis, magnam molestias in quod labore
-          alias? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
-          aperiam soluta expedita molestiae neque doloribus ad deleniti libero
-          cupiditate, iusto dolore. Expedita ad blanditiis officiis culpa
-          quibusdam laudantium facere fuga?"
-          news-date="20/01/2021"
-          />
-      </div>
+    <div class="container">
+      <HcodeSectionNewsIndividual
+        v-for="notice in news"
+        :key="notice.id"
+        :img-name="notice.img"
+        :img-info="notice.imgInfo"
+        :news-date="notice.date"
+      >
+        <template #title>
+          <h2>{{ notice.title }}</h2>
+        </template>
+        <p>{{ notice.content | truncate(200) }}</p>
+      </HcodeSectionNewsIndividual>
+    </div>
   </section>
 </template>
 
 <script>
-
 import HcodeSectionNewsIndividual from "./HcodeSectionNewsIndividual";
 export default {
   components: {
     HcodeSectionNewsIndividual,
-  }
-}
-
+  },
+  data() {
+    return {
+      news: [],
+    };
+  },
+  created() {
+    this.news = [
+      {
+        id: 1,
+        title: "Começa os treinos para a nova temporada",
+        content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus deserunt
+          quibusdam iusto, dignissimos dolore officiis libero voluptates eum non
+          velit veritatis maiores fugit nobis, magnam molestias in quod labore
+          alias? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
+          aperiam soluta expedita molestiae neque doloribus ad deleniti libero
+          cupiditate, iusto dolore. Expedita ad blanditiis officiis culpa
+          quibusdam laudantium facere fuga?`,
+        date: "2021-01-01",
+        img: "news1.jpg",
+        imgInfo: "Noticia 1",
+      },
+      {
+        id: 2,
+        title: "jogo de quarta-feira termina empatado",
+        content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus deserunt
+          quibusdam iusto, dignissimos dolore officiis libero voluptates eum non
+          velit veritatis maiores fugit nobis, magnam molestias in quod labore
+          alias? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
+          aperiam soluta expedita molestiae neque doloribus ad deleniti libero
+          cupiditate, iusto dolore. Expedita ad blanditiis officiis culpa
+          quibusdam laudantium facere fuga?`,
+        date: "2021-01-02",
+        img: "news2.jpg",
+        imgInfo: "Noticia 2",
+      },
+      {
+        id: 3,
+        title: "A inauguração do novo estadio sera na semana que vem",
+        content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus deserunt
+          quibusdam iusto, dignissimos dolore officiis libero voluptates eum non
+          velit veritatis maiores fugit nobis, magnam molestias in quod labore
+          alias? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa
+          aperiam soluta expedita molestiae neque doloribus ad deleniti libero
+          cupiditate, iusto dolore. Expedita ad blanditiis officiis culpa
+          quibusdam laudantium facere fuga?`,
+        date: "2021-01-03",
+        img: "news3.jpg",
+        imgInfo: "Noticia 3",
+      },
+    ];
+  },
+};
 </script>
 
 <style scoped>
 section {
-    padding: 50px 0;
-    margin-top: 25px;
-    background-color: #F37520
+  padding: 50px 0;
+  margin-top: 25px;
+  background-color: #f37520;
 }
 </style>

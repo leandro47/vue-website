@@ -1,36 +1,57 @@
 <template>
   <div id="app">
-    <hcodeHeader @select-championship="changeChampionship"/>
-    <hcodeSection :championship="championship"/>
-    <hcodeFooter/>
+    <hcodeHeader
+      @select-championship="changeChampionship"
+      @change-component="changeComponent"
+    />
+    <hcodeSection
+      :championship="championship"
+      :current-component="currentSectionComponent"
+    />
+    <hcodeFooter />
   </div>
 </template>
 
 <script>
-import HcodeHeader from './components/HcodeHeader'
-import HcodeFooter from './components/HcodeFooter'
-import HcodeSection from './components/HcodeSection'
+import HcodeHeader from "./components/HcodeHeader";
+import HcodeFooter from "./components/HcodeFooter";
+import HcodeSection from "./components/HcodeSection";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HcodeHeader,
     HcodeFooter,
-    HcodeSection
+    HcodeSection,
   },
-  data(){
+  data() {
     return {
-      championship: 'Campeonato Brasileiro'
-    }
+      championship: "Campeonato Brasileiro",
+      currentSectionComponent: "HcodeSectionBanner",
+    };
   },
   methods: {
-    changeChampionship(value){
+    changeChampionship(value) {
       this.championship = value;
-    }
-  }
-}
+    },
+    changeComponent(value) {
+      let component;
+
+      switch (value) {
+        case "home":
+          component = "HcodeSectionBanner";
+          break;
+        case "news":
+          component = "HcodeSectionNews";
+          break;
+      }
+
+      this.currentSectionComponent = component;
+    },
+  },
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Rajdhani&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Rajdhani&display=swap");
 </style>
