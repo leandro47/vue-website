@@ -16,6 +16,7 @@
 import HcodeHeader from "./components/HcodeHeader";
 import HcodeFooter from "./components/HcodeFooter";
 import HcodeSection from "./components/HcodeSection";
+import {mapMutations} from 'vuex';
 
 export default {
   name: "App",
@@ -26,14 +27,13 @@ export default {
   },
   data() {
     return {
-      championship: "Campeonato Brasileiro",
       currentSectionComponent: "HcodeSectionBanner",
     };
   },
   methods: {
-    changeChampionship(value) {
-      this.championship = value;
-    },
+    ...mapMutations({
+      changeChampionship: 'setChampionship'
+    }),
     changeComponent(value) {
       let component;
 
