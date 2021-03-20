@@ -4,9 +4,7 @@
       @select-championship="changeChampionship"
       @change-component="changeComponent"
     />
-    <hcodeSection
-      :current-component="currentSectionComponent"
-    />
+    <hcodeSection/>
     <hcodeFooter />
   </div>
 </template>
@@ -26,8 +24,8 @@ export default {
   },
   data() {
     return {
-      currentSectionComponent: "HcodeSectionBanner",
-    };
+
+    }
   },
   methods: {
     ...mapActions(["changeChampionship"]),
